@@ -1,0 +1,19 @@
+#!/bin/bash
+if [[ $1 -eq "-s" ]]; then
+  wallpapers=/home/joco/.wallpapers/pictures/
+  folder=$(ls $wallpapers | shuf -n1)
+  file=$(ls $wallpapers$folder | shuf -n1)
+  fullPath=$wallpapers$folder/$file
+  uri=file://$fullPath
+  gsettings set org.gnome.desktop.background picture-uri $uri
+  export WALLPAPER_PATH=$fullPath
+elif [[ $1 -eq "-r" ]]; then
+  rm $WALLPAPER_PATH
+  cd /home/joco/.wallpapers
+  git add *
+  git commit -m "removed picture I didn't like"
+  git push
+  source /bin/setwallpaper
+else
+  echo "wrong command"
+fi
