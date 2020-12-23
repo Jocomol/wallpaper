@@ -1,12 +1,13 @@
 #!/bin/bash
 
 if [[ "$1" == "-s" ]]; then
-  wallpapers=/home/joco/.wallpapers/pictures/
+  wallpapers=/home/joco/.wallpapers/
   folder=$(ls $wallpapers | shuf -n1)
   file=$(ls $wallpapers$folder | shuf -n1)
   fullPath=$wallpapers$folder/$file
-  uri=file://$fullPath
-  gsettings set org.gnome.desktop.background picture-uri $uri
+  xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP1/workspace0/last-image -s $fullPath
+  xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP3/workspace0/last-image -s $fullPath
+  xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI1/workspace0/last-image -s $fullPath
   export WALLPAPER_PATH=$fullPath
 elif [[ "$1" == "-r" ]]; then
   rm $WALLPAPER_PATH
