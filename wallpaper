@@ -10,12 +10,11 @@ if [[ "$1" == "-s" ]]; then
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP3/workspace0/last-image -s $fullPath || true &> /dev/null
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI1/workspace0/last-image -s $fullPath
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP1/workspace0/last-image -s $fullPath || true &> /dev/null
-  xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP2/workspace0/last-image -s $fullPath || true &> /dev/null
-  xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP4/workspace0/last-image -s $fullPath || true &> /dev/null
-
+  #xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP2/workspace0/last-image -s $fullPath || true &> /dev/null
+  #xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP4/workspace0/last-image -s $fullPath || true &> /dev/null
 elif [[ "$1" == "-r" ]]; then
   rm $WALLPAPER
-  . /usr/local/bin/wallpaper -s
+  . ~/.local/bin/wallpaper -s
 else
   echo "wrong command"
 fi
