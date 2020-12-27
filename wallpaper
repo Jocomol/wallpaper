@@ -5,13 +5,13 @@ if [[ "$1" == "-s" ]]; then
   folder=$(ls $wallpapers | shuf -n1)
   file=$(ls $wallpapers$folder | shuf -n1)
   fullPath=$wallpapers$folder/$file
+  export WALLPAPER=$fullPath
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP1/workspace0/last-image -s $fullPath
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorDP3/workspace0/last-image -s $fullPath
   xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI1/workspace0/last-image -s $fullPath
-  export WALLPAPER_PATH=$fullPath
 elif [[ "$1" == "-r" ]]; then
-  rm $WALLPAPER_PATH
-  source /usr/local/bin/wallpaper -s
+  rm $WALLPAPER
+  . /usr/local/bin/wallpaper -s
 else
   echo "wrong command"
 fi
